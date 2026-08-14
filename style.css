@@ -1,1 +1,84 @@
-.cake { background-color: #ffffff; border-radius: 10px; position: absolute; width: 50px; height: 35px; left: 50%; top: 50%; animation: moveCake 2s ease-out forwards; } .cake::after, .cake::before { background: rgba(255, 0, 0, 0.4); content: ""; position: absolute; width: 100%; height: 2.22px; }
+body {
+    background: pink;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.cake {
+    position: relative;
+    width: 220px;
+    height: 180px;
+    margin: 200px auto 20px;
+}
+
+/* Cake layers */
+.layer {
+    position: absolute;
+    left: 10px;
+    width: 200px;
+    height: 35px;
+    border-radius: 8px;
+    background: #9b6b52;
+
+    transform: translateY(-300px);
+    animation: drop 600ms ease-out forwards;
+}
+
+/* Bottom layer */
+.layer1 {
+    bottom: 0;
+    animation-delay: 0s;
+}
+
+/* Middle layer */
+.layer2 {
+    bottom: 35px;
+    animation-delay: 0.6s;
+}
+
+/* Top layer */
+.layer3 {
+    bottom: 70px;
+    animation-delay: 1.2s;
+}
+
+/* Cream on top */
+.cream {
+    position: absolute;
+    left: 10px;
+    bottom: 105px;
+    width: 200px;
+    height: 25px;
+    background: white;
+    border-radius: 10px;
+
+    transform: translateY(-300px);
+    animation: drop 600ms ease-out forwards;
+    animation-delay: 1.8s;
+}
+
+/* Drop animation */
+@keyframes drop {
+    0% {
+        transform: translateY(-300px);
+    }
+
+    70% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    color: #a45d5d;
+    font-weight: normal;
+}
+
+p {
+    color: #a45d5d;
+    font-size: 20px;
+}
