@@ -1,21 +1,369 @@
-.cake {
-    background-color: #ffffff;
-    border-radius: 10px;
-    position: absolute;
-    width: 5px;
-
-    height: 35px;
-    transform: translate(-300px);
-    backface-visibility: hidden;
-    animation: in 500ms 6s ease-out forwards;
+* {
+    box-sizing: border-box;
 }
 
-.cake:after,
+body {
+    margin: 0;
+    min-height: 100vh;
 
-.cake:before {
-    background: rgba(255, 0, 0, 0.4);
-    content: "";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(
+        135deg,
+        #ffd6e7,
+        #ffe9f2,
+        #e8d9ff
+    );
+
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+}
+
+/* --------------------
+   CAKE
+-------------------- */
+
+.cake {
     position: absolute;
+
+    width: 200px;
+    height: 90px;
+
+    left: 50%;
+    top: 52%;
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        to bottom,
+        #a0522d 0%,
+        #8b4513 45%,
+        #6f2f12 46%,
+        #8b4513 100%
+    );
+
+    border-radius: 12px 12px 25px 25px;
+
+    box-shadow:
+        0 12px 20px rgba(0, 0, 0, 0.25),
+        inset 0 -10px 0 rgba(0, 0, 0, 0.15);
+
+    animation: cakeEntrance 2s ease-out forwards;
+}
+
+/* --------------------
+   FROSTING
+-------------------- */
+
+.cake::before {
+    content: "";
+
+    position: absolute;
+
+    width: 210px;
+    height: 42px;
+
+    left: -5px;
+    top: -20px;
+
+    background: linear-gradient(
+        to bottom,
+        #fff5fa,
+        #ffb6d5
+    );
+
+    border-radius: 50% 50% 15px 15px;
+
+    box-shadow:
+        0 5px 0 #ff69b4,
+        inset 0 5px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------
+   FROSTING DRIPS
+-------------------- */
+
+.cake::after {
+    content: "";
+
+    position: absolute;
+
     width: 100%;
-    height: 2.22222222px;
+    height: 30px;
+
+    left: 0;
+    top: -5px;
+
+    background:
+        radial-gradient(
+            circle at 20px 15px,
+            #ffb6d5 0,
+            #ffb6d5 13px,
+            transparent 14px
+        ),
+        radial-gradient(
+            circle at 70px 15px,
+            #ffb6d5 0,
+            #ffb6d5 15px,
+            transparent 16px
+        ),
+        radial-gradient(
+            circle at 125px 15px,
+            #ffb6d5 0,
+            #ffb6d5 13px,
+            transparent 14px
+        ),
+        radial-gradient(
+            circle at 175px 15px,
+            #ffb6d5 0,
+            #ffb6d5 15px,
+            transparent 16px
+        );
+
+    pointer-events: none;
+}
+
+/* --------------------
+   CANDLES
+-------------------- */
+
+.candle {
+    position: absolute;
+
+    width: 14px;
+    height: 48px;
+
+    top: -65px;
+
+    border-radius: 5px 5px 2px 2px;
+
+    background: repeating-linear-gradient(
+        45deg,
+        #ff69b4,
+        #ff69b4 7px,
+        #ffffff 7px,
+        #ffffff 14px
+    );
+
+    box-shadow:
+        2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.candle1 {
+    left: 40px;
+}
+
+.candle2 {
+    left: 93px;
+}
+
+.candle3 {
+    left: 146px;
+}
+
+/* --------------------
+   FLAMES
+-------------------- */
+
+.flame {
+    position: absolute;
+
+    width: 14px;
+    height: 20px;
+
+    left: 0;
+    top: -21px;
+
+    background: #ffd700;
+
+    border-radius: 50% 50% 50% 50%;
+
+    box-shadow:
+        0 0 8px #ff9800,
+        0 0 15px #ffcc00;
+
+    animation: flicker 0.5s infinite alternate;
+}
+
+/* Inner flame */
+.flame::after {
+    content: "";
+
+    position: absolute;
+
+    width: 6px;
+    height: 10px;
+
+    left: 4px;
+    top: 6px;
+
+    background: #fff3a3;
+
+    border-radius: 50%;
+}
+
+/* --------------------
+   CHERRIES
+-------------------- */
+
+.cherry {
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    background: #e63946;
+
+    border-radius: 50%;
+
+    box-shadow:
+        inset -3px -3px 5px rgba(0, 0, 0, 0.2),
+        2px 2px 5px rgba(0, 0, 0, 0.2);
+
+    z-index: 5;
+}
+
+.cherry1 {
+    left: 25px;
+    top: 30px;
+}
+
+.cherry2 {
+    left: 90px;
+    top: 45px;
+}
+
+.cherry3 {
+    left: 155px;
+    top: 30px;
+}
+
+/* Cherry stems */
+.cherry::before {
+    content: "";
+
+    position: absolute;
+
+    width: 2px;
+    height: 15px;
+
+    background: #35682d;
+
+    left: 9px;
+    top: -12px;
+
+    transform: rotate(-20deg);
+
+    transform-origin: bottom;
+}
+
+/* --------------------
+   PLATE
+-------------------- */
+
+.plate {
+    position: absolute;
+
+    width: 280px;
+    height: 35px;
+
+    left: 50%;
+    top: calc(52% + 75px);
+
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        to bottom,
+        #ffffff,
+        #d8d8d8
+    );
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 10px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: -1;
+
+    animation: plateEntrance 2s ease-out forwards;
+}
+
+/* --------------------
+   TITLE
+-------------------- */
+
+h1 {
+    position: absolute;
+
+    top: 8%;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #d63384;
+
+    font-size: 42px;
+
+    text-shadow:
+        2px 2px 5px rgba(0, 0, 0, 0.15);
+
+    animation: titleEntrance 2s ease-out;
+}
+
+/* --------------------
+   ANIMATIONS
+-------------------- */
+
+@keyframes cakeEntrance {
+
+    from {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes plateEntrance {
+
+    from {
+        transform: translateX(-400px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(-50%);
+        opacity: 1;
+    }
+}
+
+@keyframes titleEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flicker {
+
+    from {
+        transform: scale(0.85) rotate(-3deg);
+    }
+
+    to {
+        transform: scale(1.15) rotate(3deg);
+    }
 }
